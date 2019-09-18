@@ -33,7 +33,6 @@ import co.edu.eam.ingesoft.products_ms.routes.Router;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = { Application.class })
-@TestPropertySource(locations = "classpath:application-local.properties")
 public class PersonControllerTest {
 
   @Autowired

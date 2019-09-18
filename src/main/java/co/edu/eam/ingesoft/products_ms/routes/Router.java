@@ -7,6 +7,7 @@ package co.edu.eam.ingesoft.products_ms.routes;
  *
  */
 public class Router {
+	
 
   /**
    * Base path of this api.

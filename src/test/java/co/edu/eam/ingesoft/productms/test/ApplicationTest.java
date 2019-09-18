@@ -12,7 +12,6 @@ import co.edu.eam.ingesoft.products_ms.Application;
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest(classes = Application.class)
-@TestPropertySource(locations = "classpath:application-local.properties")
 public class ApplicationTest {
 
   @Test
