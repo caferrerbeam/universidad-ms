@@ -11,92 +11,98 @@ import org.springframework.stereotype.Service;
 import co.edu.eam.ingesoft.products_ms.model.Program;
 import co.edu.eam.ingesoft.products_ms.repositories.ProgramRepository;
 
+/**
+ * Service to perform bussines operations over Person entity.
+ *
+ * @author caferrerb
+ *
+ */
 @Service
 public class ProgramService {
 
-	/**
-	 * program repository.
-	 */
-	@Autowired
-	private ProgramRepository programRepository;
+  /**
+   * program repository.
+   */
+  @Autowired
+  private ProgramRepository programRepository;
 
-	/**
-	 * Create a programToCreate.
-	 *
-	 * @param programToCreate program to create.
-	 * @return program created
-	 */
-	public Program create(Program programToCreate) {
-		Program program = find(programToCreate.getId());
+  /**
+   * Create a programToCreate.
+   *
+   * @param programToCreate program to create.
+   * @return program created
+   */
+  public Program create(Program programToCreate) {
+	Program program = find(programToCreate.getId());
 
-		if (program != null) {
-			throw new EntityExistsException("program already exists");
-		}
-
-		return programRepository.save(programToCreate);
+    if (program != null) {
+	  throw new EntityExistsException("program already exists");
 	}
 
-	/**
-	 * Update a program.
-	 *
-	 * @param program program to update.
-	 * @return program edited
-	 */
-	public Program update(Program program) {
-		Program programToUpdate = find(program.getId());
+	return programRepository.save(programToCreate);
+  }
 
-		if (programToUpdate == null) {
-			throw new EntityNotFoundException("program not exists");
-		}
+  /**
+   * Update a program.
+   *
+   * @param program program to update.
+   * @return program edited
+   */
+  public Program update(Program program) {
+	Program programToUpdate = find(program.getId());
 
-		return programRepository.save(program);
+	if (programToUpdate == null) {
+	  throw new EntityNotFoundException("program not exists");
 	}
 
-	/**
-	 * Find a program.
-	 *
-	 * @param id id to end the program
-	 * @return the program found
-	 */
-	public Program find(Integer id) {
-		return programRepository.findById(id).orElse(null);
+	return programRepository.save(program);
+  }
+
+  /**
+   * Find a program.
+   *
+   * @param id id to end the program
+   * @return the program found
+   */
+  public Program find(Integer id) {
+	return programRepository.findById(id).orElse(null);
+  }
+
+  /**
+   * Delete a program.
+   *
+   * @param id id to delete
+   * @return program deleted
+   */
+  public Program delete(Integer id) {
+	Program program = find(id);
+
+	if (program == null) {
+	  throw new EntityNotFoundException("program not exists");
 	}
 
-	/**
-	 * Delete a program.
-	 *
-	 * @param id id to delete
-	 * @return program deleted
-	 */
-	public Program delete(Integer id) {
-		Program program = find(id);
+	programRepository.deleteById(id);
 
-		if (program == null) {
-			throw new EntityNotFoundException("program not exists");
-		}
+	return program;
+  }
 
-		programRepository.deleteById(id);
+  /**
+   * List all programs.
+   *
+   * @return list of all programs
+   */
+  public List<Program> listAll() {
+	return programRepository.findAll();
+  }
 
-		return program;
-	}
-
-	/**
-	 * List all programs.
-	 *
-	 * @return list of all programs
-	 */
-	public List<Program> listAll() {
-		return programRepository.findAll();
-	}
-
-	/**
-	 * List programs by name.
-	 *
-	 * @param name name to looking for
-	 * @return list program with a name.
-	 */
-	public List<Program> findByName(String name) {
-		return programRepository.findByName(name);
-	}
+  /**
+   * List programs by name.
+   *
+   * @param name name to looking for
+   * @return list program with a name.
+   */
+  public List<Program> findByName(String name) {
+	return programRepository.findByName(name);
+  }
 
 }
