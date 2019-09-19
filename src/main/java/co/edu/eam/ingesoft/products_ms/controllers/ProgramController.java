@@ -40,86 +40,92 @@ public class ProgramController {
   /**
    * create a program operation.
    *
-   * @param program program to create
+   * @param program
+   *          program to create
    * @return program created
    */
   @PostMapping(value = Router.CREATE_PROGRAMS)
   public Program create(@RequestBody Program program) {
-	return programService.create(program);
+    return programService.create(program);
   }
 
   /**
    * find a program.
    *
-   * @param id id for program to find
-   * @param response httpResponse
+   * @param id
+   *          id for program to find
+   * @param response
+   *          httpResponse
    * @return program with id
    */
   @GetMapping(value = Router.FIND_PROGRAMS + "/{id}")
   public Program find(@PathVariable Integer id, HttpServletResponse response) {
-	Program program = programService.find(id);
+    Program program = programService.find(id);
 
-	if (program == null) {
-	  response.setStatus(HttpStatus.NOT_FOUND.value());
-	}
+    if (program == null) {
+      response.setStatus(HttpStatus.NOT_FOUND.value());
+    }
 
-	return program;
+    return program;
   }
 
   /**
    * Delete a program.
    *
-   * @param id id program to delete
+   * @param id
+   *          id program to delete
    * @return program deleted
    */
   @DeleteMapping(value = Router.DELETE_PROGRAMS + "/{id}")
   public Program delete(@PathVariable Integer id) {
-	return programService.delete(id);
+    return programService.delete(id);
   }
 
   /**
    * Edit a program.
    *
-   * @param program program to edit
+   * @param program
+   *          program to edit
    * @return program edited
    */
   @PutMapping(value = Router.EDIT_PROGRAMS)
   public Program edit(@RequestBody Program program) {
-	return programService.update(program);
+    return programService.update(program);
   }
 
   /**
    * find a program by name.
    *
-   * @param program program program to find
+   * @param name the name
    * @return list of program with a name
    */
   @GetMapping(value = Router.FIND_BY_NAME)
   public ResponseEntity<List<Program>> findByName(@RequestParam String name) {
-	List<Program> programs = programService.findByName(name);
+    List<Program> programs = programService.findByName(name);
 
-	if (programs.isEmpty()) {
-	  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
+    if (programs.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
-	return new ResponseEntity<>(programs, HttpStatus.OK);
+    return new ResponseEntity<>(programs, HttpStatus.OK);
   }
 
   /**
    * list all programs.
    *
-   * @param response httpResponse
+   * @param response
+   *          httpResponse
    * @return list of all programs
    */
 
   @GetMapping(value = Router.FIND_ALL)
   public List<Program> findAll(HttpServletResponse response) {
-	List<Program> programs = programService.listAll();
+    List<Program> programs = programService.listAll();
 
-	if (programs.isEmpty()) {
-	  response.setStatus(HttpStatus.NO_CONTENT.value());
-	}
+    if (programs.isEmpty()) {
+      response.setStatus(HttpStatus.NO_CONTENT.value());
+    }
 
-	return programs;
+    return programs;
   }
 }
