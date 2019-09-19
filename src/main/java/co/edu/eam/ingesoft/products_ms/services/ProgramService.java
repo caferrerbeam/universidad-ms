@@ -29,61 +29,65 @@ public class ProgramService {
   /**
    * Create a programToCreate.
    *
-   * @param programToCreate program to create.
+   * @param programToCreate
+   *          program to create.
    * @return program created
    */
   public Program create(Program programToCreate) {
-	Program program = find(programToCreate.getId());
+    Program program = find(programToCreate.getId());
 
     if (program != null) {
-	  throw new EntityExistsException("program already exists");
-	}
+      throw new EntityExistsException("program already exists");
+    }
 
-	return programRepository.save(programToCreate);
+    return programRepository.save(programToCreate);
   }
 
   /**
    * Update a program.
    *
-   * @param program program to update.
+   * @param program
+   *          program to update.
    * @return program edited
    */
   public Program update(Program program) {
-	Program programToUpdate = find(program.getId());
+    Program programToUpdate = find(program.getId());
 
-	if (programToUpdate == null) {
-	  throw new EntityNotFoundException("program not exists");
-	}
+    if (programToUpdate == null) {
+      throw new EntityNotFoundException("program not exists");
+    }
 
-	return programRepository.save(program);
+    return programRepository.save(program);
   }
 
   /**
    * Find a program.
    *
-   * @param id id to end the program
+   * @param id
+   *          id to end the program
    * @return the program found
    */
   public Program find(Integer id) {
-	return programRepository.findById(id).orElse(null);
+    return programRepository.findById(id).orElse(null);
   }
 
   /**
    * Delete a program.
    *
-   * @param id id to delete
+   * @param id
+   *          id to delete
    * @return program deleted
    */
   public Program delete(Integer id) {
-	Program program = find(id);
+    Program program = find(id);
 
-	if (program == null) {
-	  throw new EntityNotFoundException("program not exists");
-	}
+    if (program == null) {
+      throw new EntityNotFoundException("program not exists");
+    }
 
-	programRepository.deleteById(id);
+    programRepository.deleteById(id);
 
-	return program;
+    return program;
   }
 
   /**
@@ -92,17 +96,18 @@ public class ProgramService {
    * @return list of all programs
    */
   public List<Program> listAll() {
-	return programRepository.findAll();
+    return programRepository.findAll();
   }
 
   /**
    * List programs by name.
    *
-   * @param name name to looking for
+   * @param name
+   *          name to looking for
    * @return list program with a name.
    */
   public List<Program> findByName(String name) {
-	return programRepository.findByName(name);
+    return programRepository.findByName(name);
   }
 
 }
