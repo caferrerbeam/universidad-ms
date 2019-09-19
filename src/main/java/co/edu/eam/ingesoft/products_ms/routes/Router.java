@@ -19,9 +19,9 @@ public class Router {
   public static final String PERSON_PATH = BASE_PATH + "/persons";
 
   /**
-   * person uri.
+   * programs uri.
    */
-  public static final String PRODUCTS_PATH = BASE_PATH + "/products";
+  public static final String PROGRAMS_PATH = BASE_PATH + "/programs";
 
   /**
    * create person uri.
@@ -34,7 +34,7 @@ public class Router {
   public static final String FIND_PERSON = "/";
 
   /**
-   * find person uri.
+   * delete person uri.
    */
   public static final String DELETE_PERSON = "/";
 
@@ -42,11 +42,6 @@ public class Router {
    * Edit person uri.
    */
   public static final String EDIT_PERSON = "/";
-
-  /**
-   * Edit products uri.
-   */
-  public static final String EDIT_PRODUCTS = "/";
 
   /**
    * find by name persons uri.
@@ -59,8 +54,28 @@ public class Router {
   public static final String FIND_ALL = "/all";
 
   /**
-   * find all products uri.
+   * Edit programs uri.
    */
-  public static final String FIND_ALL_PRODUCTS = "/all";
+  public static final String EDIT_PROGRAMS = "/";
+
+  /**
+   * create programs uri.
+   */
+  public static final String CREATE_PROGRAMS = "/";
+
+  /**
+   * find programs uri.
+   */
+  public static final String FIND_PROGRAMS = "/";
+
+  /**
+   * delete programs uri.
+   */
+  public static final String DELETE_PROGRAMS = "/";
+
+  /**
+   * find all programs uri.
+   */
+  public static final String FIND_ALL_PROGRAMS = "/all";
 
 }
