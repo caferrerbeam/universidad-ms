@@ -3,7 +3,7 @@ package co.edu.eam.ingesoft.products_ms.routes;
 /**
  * Class to define the service's routes.
  *
- * @author caferrerb
+ * @author Jhon
  *
  */
 public class Router {

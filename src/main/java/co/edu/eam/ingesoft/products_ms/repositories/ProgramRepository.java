@@ -10,7 +10,7 @@ import co.edu.eam.ingesoft.products_ms.model.Program;
 /**
  * Program repository.
  *
- * @author caferrerb
+ * @author Jhon
  *
  */
 @Repository

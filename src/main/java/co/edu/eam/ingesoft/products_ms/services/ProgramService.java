@@ -14,7 +14,7 @@ import co.edu.eam.ingesoft.products_ms.repositories.ProgramRepository;
 /**
  * Service to perform bussines operations over Person entity.
  *
- * @author caferrerb
+ * @author Jhon
  *
  */
 @Service
