@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * Entity person.
  *
- * @author caferrerb
+ * @author caferrer
  *
  */
 @Entity
