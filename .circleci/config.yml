@@ -5,21 +5,27 @@ jobs:
       # specify the version you desire here
       - image: circleci/openjdk
         environment:
+          DB_HOST: localhost
+          DB_PORT: 5432
           DB_NAME: postgres
           DB_USER: user
           DB_PASS: password
-          DB_HOST: localhost
-          DB_PORT: 5432      
-  # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+
       - image: circleci/postgres:9.6.2-alpine
         environment:
           POSTGRES_USER: user
           POSTGRES_DB: password
 
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
     working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m -Dspring.datasource.url=jdbc:postgres://user:password@localhost:5432/postgres -Dspring.datasource.jdbcUrl=jdbc:postgres://user:password@localhost:5432/postgres -Dspring.datasource.username=user  -Dspring.datasource.password=password 
 
     steps:
       - checkout
@@ -27,25 +33,31 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-      - run: npm install
+      - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run eslint!
-      - run:  ./node_modules/eslint/bin/eslint.js .
-      - run:  npm run test
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - run: mvn integration-test
+      - run: ls -l        
+      - persist_to_workspace:
+          root: target
+          paths:
+            - .
   deploy_to_staging:
     docker:
       - image: google/cloud-sdk
     steps:
       - checkout
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: target
+      - run: ls -l
       - run: 
           name: Setup Google Cloud SDK
           command: |
@@ -66,6 +78,7 @@ jobs:
             docker tag ${CIRCLE_PROJECT_REPONAME} gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
             gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
             docker push gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
+      - run: pwd
       - run: 
           name: Deploy to Kubernetes
           command: |

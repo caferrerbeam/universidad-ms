@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>co.edu.eam.ingesoft.pasantiasapp</groupId>
-	<artifactId>psicologia-ms</artifactId>
-	<version>0.5.0</version>
+	<artifactId>universidad-ms</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<description>Example project demonstrating REST APIs implemented using Spring Boot, in-memory database, embedded Tomcat, Swagger, JsonPath, Hamcrest and MockMVC</description>
 
