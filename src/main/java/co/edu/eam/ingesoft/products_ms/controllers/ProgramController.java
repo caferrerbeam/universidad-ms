@@ -24,7 +24,7 @@ import co.edu.eam.ingesoft.products_ms.services.ProgramService;
 /**
  * REst controller for program entity.
  *
- * @author Jhon
+ * @author JHON
  *
  */
 @RestController
@@ -118,7 +118,7 @@ public class ProgramController {
    * @return list of all programs
    */
 
-  @GetMapping(value = Router.FIND_ALL)
+  @GetMapping(value = Router.FIND_ALL_PROGRAMS)
   public List<Program> findAll(HttpServletResponse response) {
     List<Program> programs = programService.listAll();
 

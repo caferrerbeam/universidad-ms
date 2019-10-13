@@ -77,6 +77,6 @@ public class Router {
   /**
    * find all programs uri.
    */
-  public static final String FIND_ALL_PROGRAMS = "/all";
+  public static final String FIND_ALL_PROGRAMS = "/";
 
 }
