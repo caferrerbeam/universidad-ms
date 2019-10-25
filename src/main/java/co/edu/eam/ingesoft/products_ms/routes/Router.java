@@ -25,6 +25,11 @@ public class Router {
   public static final String PROGRAMS_PATH = BASE_PATH + "/programs";
 
   /**
+   * programs uri.
+   */
+  public static final String FACULTY_PATH = BASE_PATH + "/faculty";
+
+  /**
    * create person uri.
    */
   public static final String CREATE_PERSON = "/";
@@ -78,5 +83,10 @@ public class Router {
    * find all programs uri.
    */
   public static final String FIND_ALL_PROGRAMS = "/all";
+
+  /**
+   * find faculty uri.
+   */
+  public static final String FIND_FACULTY = "/";
 
 }
