@@ -1,6 +1,7 @@
 package co.edu.eam.ingesoft.productms.test.controllers;
 
 import static org.hamcrest.Matchers.is;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,7 +47,7 @@ public class FacultyControllerTest {
         new Faculty(2, "Administracion")));
 
     mockMvc.perform(get(FIND_BY_ID + "/1")).andExpect(status().isOk())
-        .andExpect(jsonPath("$.name", is("software")));
+        .andExpect(jsonPath("$.name", is("Ingenieria")));
   }
 
   @Test

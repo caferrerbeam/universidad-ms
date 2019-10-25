@@ -28,6 +28,10 @@ public class Faculty implements Serializable {
   @Column(name = "name")
   private String name;
 
+  public Faculty() {
+
+  }
+
   public Faculty(Integer id, String name) {
     super();
     this.id = id;
