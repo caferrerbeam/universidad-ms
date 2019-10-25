@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "faculty")
 public class Faculty implements Serializable {
-/**
+  /**
    * Entity Primary key.
    */
   @Id
