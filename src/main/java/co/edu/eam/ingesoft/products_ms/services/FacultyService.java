@@ -21,6 +21,22 @@ public class FacultyService {
   private FacultyRepository facultyRepository;
 
   /**
+   * Craete a facultyToCreate.
+   *
+   * @param facultyToCreate faculty to create.
+   * @return faculty created
+   */
+  public Faculty create(Faculty facultyToCreate) {
+    Faculty faculty = find(facultyToCreate.getId());
+
+    if (faculty != null) {
+      throw new EntityExistsException("faculty already exists");
+    }
+
+    return facultyRepository.save(facultyToCreate);
+  }
+
+  /**
    * Find a faculty.
    * @param id to end the program.
    * @return the program found.

@@ -29,6 +29,17 @@ public class FacultyController {
   private FacultyService facultyService;
 
   /**
+   * create a faculty operation.
+   *
+   * @param faculty faculty to create
+   * @return faculty created
+   */
+  @PostMapping(value = Router.CREATE_FACULTY)
+  public Faculty create(@RequestBody Faculty faculty) {
+    return facultyService.create(faculty);
+  }
+
+  /**
    * find a faculty.
    * @param id for faculty to find.
    * @param response httpResponse.
