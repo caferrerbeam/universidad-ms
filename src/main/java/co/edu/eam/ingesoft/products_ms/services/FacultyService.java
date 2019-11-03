@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import co.edu.eam.ingesoft.products_ms.model.Faculty;
 import co.edu.eam.ingesoft.products_ms.repositories.FacultyRepository;
 
+import javax.persistence.EntityExistsException;
+
 /**
  * Service to perform bussines operations over Faculty entity.
  *
