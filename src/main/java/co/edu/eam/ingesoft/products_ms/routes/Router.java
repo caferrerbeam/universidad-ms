@@ -80,6 +80,11 @@ public class Router {
   public static final String DELETE_PROGRAMS = "/";
 
   /**
+   * create programs uri.
+   */
+  public static final String CREATE_FACULTY = "/";
+
+  /**
    * find all programs uri.
    */
   public static final String FIND_ALL_PROGRAMS = "/";

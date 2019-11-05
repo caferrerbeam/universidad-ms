@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import co.edu.eam.ingesoft.products_ms.model.Faculty;
 import co.edu.eam.ingesoft.products_ms.routes.Router;
@@ -27,6 +29,17 @@ public class FacultyController {
    */
   @Autowired
   private FacultyService facultyService;
+
+  /**
+   * create a faculty operation.
+   *
+   * @param faculty faculty to create
+   * @return faculty created
+   */
+  @PostMapping(value = Router.CREATE_FACULTY)
+  public Faculty create(@RequestBody Faculty faculty) {
+    return facultyService.create(faculty);
+  }
 
   /**
    * find a faculty.

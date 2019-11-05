@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import co.edu.eam.ingesoft.products_ms.model.Faculty;
 import co.edu.eam.ingesoft.products_ms.repositories.FacultyRepository;
 
+import javax.persistence.EntityExistsException;
+
 /**
  * Service to perform bussines operations over Faculty entity.
  *
@@ -19,6 +21,22 @@ public class FacultyService {
    */
   @Autowired
   private FacultyRepository facultyRepository;
+
+  /**
+   * Craete a facultyToCreate.
+   *
+   * @param facultyToCreate faculty to create.
+   * @return faculty created
+   */
+  public Faculty create(Faculty facultyToCreate) {
+    Faculty faculty = find(facultyToCreate.getId());
+
+    if (faculty != null) {
+      throw new EntityExistsException("faculty already exists");
+    }
+
+    return facultyRepository.save(facultyToCreate);
+  }
 
   /**
    * Find a faculty.
