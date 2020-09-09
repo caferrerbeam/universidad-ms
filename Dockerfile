@@ -1,20 +1,10 @@
-# Start with a base image containing Java runtime
-FROM openjdk:8-jdk-alpine
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
+COPY . /build/
+WORKDIR /build/
+RUN mvn package -DskipTests
+RUN ls /build/target
 
-# Add Maintainer Info
-LABEL maintainer="callicoder@gmail.com"
-
-# Add a volume pointing to /tmp
-VOLUME /tmp
-
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
-
-# The application's jar file
-ARG JAR_FILE=target/universidad-ms-1.0.0.jar
-
-# Add the application's jar to the container
-ADD ${JAR_FILE} app.jar
-
-# Run the jar file 
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY --from=MAVEN_BUILD /build/target/universidad-ms-1.0.0.jar /app/
+ENTRYPOINT ["java", "-jar", "universidad-ms-1.0.0.jar"]
